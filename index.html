@@ -35,15 +35,16 @@
   --ala:#4FA3F7;
   --brasa:#F2543D;
   --alba:#C6D8F2;
+  --media:#9B8CF7;
   --exito:#4FD18B;
   --serif:"Times New Roman",Tinos,"Liberation Serif",Georgia,serif;
   --r:10px;
 }
 
 /* colores por grupo */
-.g1{--tono:var(--oro);   --tono-suave:rgba(245,197,66,.12);  --tono-borde:rgba(245,197,66,.34)}
-.g2{--tono:var(--ala);   --tono-suave:rgba(79,163,247,.12);  --tono-borde:rgba(79,163,247,.34)}
-.g3{--tono:var(--brasa); --tono-suave:rgba(242,84,61,.13);   --tono-borde:rgba(242,84,61,.40)}
+.g1{--tono:var(--ala);   --tono-suave:rgba(79,163,247,.12);  --tono-borde:rgba(79,163,247,.34)}
+.g2{--tono:var(--media); --tono-suave:rgba(155,140,247,.13); --tono-borde:rgba(155,140,247,.36)}
+.g3{--tono:var(--oro);   --tono-suave:rgba(245,197,66,.16);  --tono-borde:rgba(245,197,66,.55)}
 .g4{--tono:var(--alba);  --tono-suave:rgba(198,216,242,.11); --tono-borde:rgba(198,216,242,.32)}
 
 *{box-sizing:border-box}
@@ -196,12 +197,20 @@ button.peligro{border-color:rgba(242,84,61,.5);color:var(--brasa);background:tra
 }
 .col-cinta{height:4px;margin:0 -11px 8px;background:var(--tono)}
 .col.lleno{opacity:.92}
-.col.elite{border-color:var(--tono-borde);box-shadow:inset 0 0 0 1px rgba(242,84,61,.14)}
+.col.elite{
+  border-color:rgba(245,197,66,.5);
+  box-shadow:inset 0 0 0 1px rgba(245,197,66,.16), 0 6px 26px rgba(245,197,66,.10);
+}
+.col.elite .col-cinta{height:6px;background:linear-gradient(90deg,var(--oro-hondo),var(--oro) 45%,#FFE9A8)}
+.col.elite .col-hora{color:var(--oro)}
+.ley.destacada{
+  box-shadow:0 0 0 1px rgba(245,197,66,.28), 0 6px 24px rgba(245,197,66,.12);
+}
 
 .col-cab{display:flex;flex-direction:column;gap:1px}
 .col-grupo{
   font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;
-  color:var(--tono);font-weight:700;line-height:1.25;min-height:2.2em;
+  color:var(--tono);font-weight:700;line-height:1.25;min-height:2.5em;
 }
 .col-hora{
   font-size:2.5rem;line-height:.95;font-weight:700;letter-spacing:-.02em;
@@ -382,7 +391,7 @@ var GRUPOS = {
   centinelas:  {n:"Centinelas",            c:"g1", lema:"Abren la vigilia"},
   vigias:      {n:"Vigías de Medianoche",  c:"g2", lema:"Cruzan el cambio de día"},
   implacables: {n:"Guardia Implacable",    c:"g3", lema:"Las horas más duras · solo 5 por hora"},
-  alba:        {n:"Heraldos del Alba",     c:"g4", lema:"Cierran la cadena y reciben la mañana"}
+  alba:        {n:"Guerreros del Amanecer", c:"g4", lema:"Cierran la cadena y reciben la mañana"}
 };
 var ORDEN_GRUPOS = ["centinelas","vigias","implacables","alba"];
 
@@ -824,7 +833,7 @@ function leyendaGrupos(){
     var horas = FRANJAS.filter(function(f){ return f.grupo === id; });
     var ini = horas[0].ini, fin = (horas[horas.length-1].ini + 1) % 24;
     var libres = horas.reduce(function(a,f){ return a + Math.max(0, f.cupo - gente("cadena",f.id).length); }, 0);
-    return '<div class="ley '+g.c+'">'
+    return '<div class="ley '+g.c+(id==="implacables"?" destacada":"")+'">'
       + '<span class="ley-n">'+esc(g.n)+'</span>'
       + '<span class="ley-h">'+pad(ini)+':00 – '+pad(fin)+':00</span>'
       + '<span class="ley-l">'+libres+(libres===1?' libre':' libres')+'</span>'
