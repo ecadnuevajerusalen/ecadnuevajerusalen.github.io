@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relevo de Oración · Embajadores de Cristo Nueva Jerusalén</title>
+<meta name="description" content="Tablero en vivo de la estrategia mensual de oración de la organización juvenil Embajadores de Cristo, Nueva Jerusalén.">
+<meta name="theme-color" content="#070B18">
+<meta property="og:title" content="Relevo de Oración">
+<meta property="og:description" content="Elige tu hora o tu día de oración. Tablero en vivo de Embajadores de Cristo, Nueva Jerusalén.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23070B18'/%3E%3Cpath d='M50 22c7 9 11 15 11 22a11 11 0 0 1-22 0c0-7 4-13 11-22z' fill='%23F0B429'/%3E%3Crect x='44' y='56' width='12' height='24' rx='3' fill='%23EEF1FA'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700&display=swap">
+<style>
+:root{
+  --tinta:#070B18;
+  --tinta-2:#0E1428;
+  --tinta-3:#161E3A;
+  --borde:#28315A;
+  --borde-suave:#1B2342;
+  --texto:#EEF1FA;
+  --tenue:#95A0C2;
+  --tenue-2:#6C769B;
+  --lampara:#F0B429;
+  --lampara-tenue:rgba(240,180,41,.13);
+  --madrugada:#7EA8FF;
+  --madrugada-tenue:rgba(126,168,255,.13);
+  --completo:#4FD18B;
+  --alerta:#FF7A6B;
+  --r:14px;
+  --display:"Bodoni Moda",Georgia,"Times New Roman",serif;
+  --cuerpo:"Archivo","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:
+    radial-gradient(1100px 620px at 78% -14%, #17224A 0%, rgba(23,34,74,0) 62%),
+    radial-gradient(820px 520px at 6% 104%, #12203F 0%, rgba(18,32,63,0) 60%),
+    var(--tinta);
+  background-attachment:fixed;
+  color:var(--texto);
+  font-family:var(--cuerpo);
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.envoltura{max-width:1180px;margin:0 auto;padding:28px 20px 72px;display:flex;flex-direction:column;gap:26px}
+
+/* ---------- encabezado ---------- */
+.cabecera{display:flex;flex-direction:column;gap:14px}
+.rotulo{
+  font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--tenue-2);font-weight:600;
+}
+h1{
+  font-family:var(--display);font-weight:400;
+  font-size:clamp(2.4rem,6.2vw,4.1rem);line-height:1.02;
+  margin:0;text-wrap:balance;letter-spacing:-.01em;
+}
+h1 em{font-style:italic;color:var(--lampara)}
+.lema{margin:0;color:var(--tenue);max-width:56ch;font-size:1.02rem}
+.cinta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.dato{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--tinta-2);border:1px solid var(--borde-suave);
+  border-radius:999px;padding:6px 14px;font-size:.83rem;color:var(--tenue);
+}
+.dato b{color:var(--texto);font-weight:600;font-variant-numeric:tabular-nums}
+.dato.cerrado{border-color:rgba(255,122,107,.45);color:var(--alerta)}
+
+/* ---------- medidor ---------- */
+.medidor{display:flex;flex-direction:column;gap:8px}
+.medidor-cifras{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.medidor-cifras .grande{
+  font-family:var(--display);font-size:clamp(1.7rem,4vw,2.5rem);
+  font-variant-numeric:tabular-nums;line-height:1;
+}
+.medidor-cifras .grande span{color:var(--tenue-2);font-size:.55em}
+.medidor-cifras .nota{font-size:.82rem;color:var(--tenue);text-align:right}
+.riel{height:7px;border-radius:99px;background:var(--tinta-3);overflow:hidden}
+.riel i{display:block;height:100%;background:linear-gradient(90deg,var(--lampara),#FFD778);transition:width .5s ease}
+
+/* ---------- barra de identidad ---------- */
+.barra{
+  display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+  background:var(--tinta-2);border:1px solid var(--borde-suave);
+  border-radius:var(--r);padding:14px 16px;
+}
+.barra-yo{display:flex;flex-wrap:wrap;gap:10px;align-items:center;flex:1 1 320px}
+.barra-yo label{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tenue-2);font-weight:600}
+.barra-acc{display:flex;gap:8px;flex-wrap:wrap}
+input[type=text],input[type=number],textarea{
+  font-family:var(--cuerpo);font-size:.95rem;color:var(--texto);
+  background:var(--tinta);border:1px solid var(--borde);border-radius:10px;
+  padding:9px 12px;min-width:0;
+}
+input[type=text]:focus-visible,input[type=number]:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--lampara);outline-offset:1px;border-color:transparent;
+}
+input::placeholder,textarea::placeholder{color:var(--tenue-2)}
+#miNombre{flex:1 1 220px;max-width:340px}
+
+button{
+  font-family:var(--cuerpo);font-size:.9rem;font-weight:600;cursor:pointer;
+  border-radius:10px;padding:9px 15px;border:1px solid var(--borde);
+  background:var(--tinta-3);color:var(--texto);transition:.16s ease;
+}
+button:hover:not(:disabled){border-color:var(--tenue-2);transform:translateY(-1px)}
+button:focus-visible{outline:2px solid var(--lampara);outline-offset:2px}
+button:disabled{opacity:.42;cursor:not-allowed}
+button.primario{background:var(--lampara);color:#2A1D00;border-color:transparent}
+button.primario:hover:not(:disabled){background:#FFC24D}
+button.fantasma{background:transparent}
+button.peligro{border-color:rgba(255,122,107,.5);color:var(--alerta);background:transparent}
+button.mini{padding:3px 8px;font-size:.75rem;border-radius:7px;font-weight:500}
+
+/* ---------- avisos ---------- */
+.aviso{
+  border-radius:var(--r);padding:13px 16px;font-size:.9rem;
+  border:1px solid var(--borde);background:var(--tinta-2);color:var(--tenue);
+}
+.aviso.mal{border-color:rgba(255,122,107,.45);color:#FFC2BA;background:rgba(255,122,107,.07)}
+.aviso b{color:var(--texto)}
+
+/* ---------- rejilla de turnos ---------- */
+.seccion-titulo{
+  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  border-bottom:1px solid var(--borde-suave);padding-bottom:10px;
+}
+.seccion-titulo h2{
+  font-family:var(--display);font-weight:400;font-size:1.5rem;margin:0;letter-spacing:-.01em;
+}
+.seccion-titulo p{margin:0;color:var(--tenue);font-size:.87rem}
+
+.rejilla{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:14px}
+
+.turno{
+  position:relative;display:flex;flex-direction:column;gap:11px;
+  background:var(--tinta-2);border:1px solid var(--borde-suave);
+  border-radius:var(--r);padding:16px 16px 14px;overflow:hidden;
+}
+.turno::before{
+  content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--borde);
+}
+.turno.elite{background:linear-gradient(180deg,rgba(126,168,255,.06),rgba(126,168,255,0) 55%),var(--tinta-2)}
+.turno.elite::before{background:var(--madrugada)}
+.turno.abierto-lugar::before{background:var(--lampara)}
+.turno.lleno::before{background:var(--completo)}
+
+.turno-alto{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.reloj{display:flex;flex-direction:column;gap:1px}
+.reloj .num{
+  font-family:var(--display);font-size:2.7rem;line-height:.94;
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em;
+}
+.reloj .rango{font-size:.78rem;color:var(--tenue);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.insignia{
+  font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;
+  padding:4px 9px;border-radius:99px;white-space:nowrap;
+  background:var(--lampara-tenue);color:var(--lampara);border:1px solid rgba(240,180,41,.32);
+}
+.insignia.elite{background:var(--madrugada-tenue);color:var(--madrugada);border-color:rgba(126,168,255,.35)}
+.insignia.lleno{background:rgba(79,209,139,.12);color:var(--completo);border-color:rgba(79,209,139,.32)}
+
+.responsable{font-size:.84rem;color:var(--tenue);display:flex;gap:6px;align-items:baseline}
+.responsable b{color:var(--texto);font-weight:600}
+.responsable.vacante b{color:var(--lampara)}
+
+.lista{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px;min-height:26px}
+.lista li{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--tinta-3);border:1px solid var(--borde-suave);
+  border-radius:99px;padding:4px 10px;font-size:.83rem;
+}
+.lista li.yo{border-color:var(--lampara);background:var(--lampara-tenue)}
+.lista .quitar{
+  border:0;background:transparent;color:var(--tenue-2);padding:0 2px;font-size:1rem;
+  line-height:1;border-radius:4px;
+}
+.lista .quitar:hover{color:var(--alerta);transform:none}
+.vacio{font-size:.83rem;color:var(--tenue-2);font-style:italic}
+
+.turno-bajo{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:4px}
+.cupo{font-size:.8rem;color:var(--tenue);font-variant-numeric:tabular-nums}
+.cupo b{color:var(--texto)}
+.cupo.escaso b{color:var(--lampara)}
+.barrita{height:4px;border-radius:99px;background:var(--tinta-3);overflow:hidden;margin-top:2px}
+.barrita i{display:block;height:100%;background:var(--lampara)}
+.turno.elite .barrita i{background:var(--madrugada)}
+.turno.lleno .barrita i{background:var(--completo)}
+
+/* ---------- franja élite ---------- */
+.aviso-elite{
+  display:flex;gap:14px;align-items:flex-start;
+  border:1px solid rgba(126,168,255,.3);background:var(--madrugada-tenue);
+  border-radius:var(--r);padding:15px 17px;
+}
+.aviso-elite .marca{
+  font-family:var(--display);font-size:1.6rem;color:var(--madrugada);line-height:1;flex:none;
+}
+.aviso-elite h3{margin:0 0 3px;font-size:.95rem;letter-spacing:.04em}
+.aviso-elite p{margin:0;font-size:.87rem;color:var(--tenue)}
+
+/* ---------- reglas ---------- */
+.reglas{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;
+  border-top:1px solid var(--borde-suave);padding-top:20px;
+}
+.regla h4{margin:0 0 5px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lampara)}
+.regla p{margin:0;font-size:.88rem;color:var(--tenue)}
+.verso{
+  font-family:var(--display);font-style:italic;font-size:1.12rem;color:var(--texto);
+  border-left:2px solid var(--lampara);padding-left:16px;margin:0;max-width:62ch;
+}
+.verso cite{display:block;font-family:var(--cuerpo);font-style:normal;font-size:.75rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--tenue-2);margin-top:7px}
+
+/* ---------- panel admin ---------- */
+.panel{
+  background:var(--tinta-2);border:1px solid var(--borde);border-radius:var(--r);
+  padding:20px;display:flex;flex-direction:column;gap:18px;
+}
+.panel h2{font-family:var(--display);font-weight:400;font-size:1.4rem;margin:0}
+.campos{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:13px}
+.campo{display:flex;flex-direction:column;gap:5px}
+.campo label{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--tenue-2);font-weight:600}
+.campo textarea{min-height:104px;resize:vertical;line-height:1.5;font-size:.88rem}
+.campo .pista{font-size:.76rem;color:var(--tenue-2)}
+.elector{display:flex;flex-wrap:wrap;gap:8px}
+.elector button.activa{background:var(--lampara);color:#2A1D00;border-color:transparent}
+.fila-acc{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.divisor{height:1px;background:var(--borde-suave)}
+
+/* ---------- modo pantalla ---------- */
+body.pantalla .barra,body.pantalla .panel,body.pantalla .reglas,body.pantalla .pie-nota{display:none}
+body.pantalla .envoltura{max-width:1560px;gap:20px}
+body.pantalla .rejilla{grid-template-columns:repeat(3,1fr);gap:16px}
+body.pantalla .reloj .num{font-size:3.4rem}
+body.pantalla .lista li{font-size:1rem;padding:5px 12px}
+body.pantalla .lista .quitar{display:none}
+body.pantalla .turno-bajo button{display:none}
+body.pantalla h1{font-size:clamp(3rem,5.4vw,4.6rem)}
+.salir-pantalla{display:none}
+body.pantalla .salir-pantalla{
+  display:block;position:fixed;right:16px;bottom:16px;z-index:9;opacity:.35;
+}
+body.pantalla .salir-pantalla:hover{opacity:1}
+
+.pie-nota{font-size:.8rem;color:var(--tenue-2);text-align:center;padding-top:8px}
+
+@media (max-width:640px){
+  .envoltura{padding:20px 14px 60px}
+  .rejilla{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  button:hover:not(:disabled){transform:none}
+}
+.cargando{color:var(--tenue);font-size:1rem;padding:40px 0}
+.dato .punto{width:7px;height:7px;border-radius:99px;background:var(--alerta);display:inline-block;flex:none}
+.dato.vivo{border-color:rgba(79,209,139,.35);color:var(--completo)}
+.dato.vivo .punto{background:var(--completo);animation:latido 2.4s ease-in-out infinite}
+@keyframes latido{0%,100%{opacity:1}50%{opacity:.35}}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;background:var(--tinta-3);
+  border:1px solid var(--borde-suave);border-radius:6px;padding:1px 6px}
+
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+<button class="salir-pantalla" onclick="RELEVO.pantalla(false)">Salir del modo pantalla</button>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
+
+<!-- ============================================================
+     PEGA AQUÍ LA CONFIGURACIÓN DE FIREBASE
+     ============================================================ -->
+<script>
+window.CONFIG_FIREBASE = {
+  databaseURL: "https://njecad-007-default-rtdb.firebaseio.com",
+  projectId: "njecad-007"
+};
+</script>
+
+<script>
+/* ================================================================
+   Relevo de Oración — Embajadores de Cristo, Nueva Jerusalén
+   Tablero de estrategia de oración en tiempo real.
+   ================================================================ */
+
+/* ---- Configuración de Firebase (pegar la del proyecto) ---- */
+var CONFIG_FIREBASE = window.CONFIG_FIREBASE || null;
+
+(function(){
+"use strict";
+
+/* ============ definiciones fijas ============ */
+var DIAS = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
+
+var CONFIG_DEF = {
+  estrategia:"cadena",
+  mes:"Septiembre 2026",
+  lema:"Un mes, una sola voz: le pedimos a Dios un avivamiento del Espíritu Santo.",
+  abierto:true,
+  pin:"1234",
+  directivos:[
+    "Kevin Vásquez | Presidente",
+    "René Barrera | Vicepresidente",
+    "Lemuel Cruz | Secretario",
+    "Yorleni V. | Tesorera",
+    "Melanie de los Santos | Vocal I",
+    "Alba Orozco | Vocal II",
+    "Gabriela Barrera | Vocal III",
+    "Belén Luna | Vocal IV"
+  ],
+  cadenaFecha:"Viernes 4 de septiembre, 9:00 p. m. → 6:00 a. m.",
+  semanaFechas:"Del lunes 7 al domingo 13 de septiembre",
+  minutos:5,
+  matFecha:"Sábado 12 de septiembre",
+  matHora:"4:30 a. m.",
+  matLugar:"Templo central",
+  matPrograma:"04:30 | Apertura y bienvenida | Lemuel Cruz\n04:45 | Alabanza y adoración | Gabriela Barrera\n05:15 | Palabra breve | Kevin Vásquez\n05:35 | Ministración y oración por el avivamiento | Toda la directiva\n06:10 | Cierre y desayuno compartido | Yorleni V."
+};
+
+function franjas(){
+  var horas = [21,22,23,0,1,2,3,4,5], out = [];
+  for (var i=0;i<horas.length;i++){
+    var h = horas[i], elite = (h>=1 && h<=4);
+    out.push({id:"h"+h, ini:h, elite:elite, cupo: elite?5:8});
+  }
+  return out;
+}
+var FRANJAS = franjas();
+var DIAS_ID = DIAS.map(function(d,i){ return {id:"d"+i, nombre:d, cupo:0}; });
+
+/* ============ utilidades ============ */
+function esc(s){
+  return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
+function pad(n){ return (n<10?"0":"")+n; }
+function rango(h){ return pad(h)+":00 – "+pad((h+1)%24)+":00"; }
+function ls(k,v){
+  try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){ return null; }
+}
+function ss(k,v){
+  try{ if(v===undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k,v); }catch(e){ return null; }
+}
+function sinTildes(s){
+  return String(s).normalize ? String(s).normalize("NFD").replace(/[\u0300-\u036f]/g,"") : String(s);
+}
+function claveDe(nombre){
+  var base = sinTildes(nombre).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+  return miId + "_" + (base || "x");
+}
+
+var miId = ls("relevo:id");
+if(!miId){ miId = "d"+Math.random().toString(36).slice(2,10); ls("relevo:id", miId); }
+
+/* ============ estado local ============ */
+var db = null, conectado = false, listo = false;
+var S = {config:{}, resp:{}, gente:{}};
+var aviso = null, fallo = null;
+var adminAbierto = false;
+var desbloqueado = ss("relevo:admin") === "si";
+var confirmandoVaciar = false;
+var sembrado = false;
+
+var API = {};
+window.RELEVO = API;
+
+/* ============ arranque ============ */
+function arrancar(){
+  if (!CONFIG_FIREBASE || !CONFIG_FIREBASE.databaseURL){
+    fallo = "falta-config";
+    pintar();
+    return;
+  }
+  try{
+    firebase.initializeApp(CONFIG_FIREBASE);
+    db = firebase.database();
+  }catch(e){
+    fallo = "sin-conexion";
+    pintar();
+    return;
+  }
+
+  db.ref(".info/connected").on("value", function(s){
+    conectado = s.val() === true;
+    if (listo) pintar();
+  });
+
+  db.ref("tablero").on("value", function(snap){
+    var v = snap.val() || {};
+    S.config = Object.assign({}, CONFIG_DEF, v.config || {});
+    S.resp   = v.resp   || {};
+    S.gente  = v.gente  || {};
+    listo = true;
+    fallo = null;
+    if (!v.config && !sembrado){
+      sembrado = true;
+      db.ref("tablero/config").set(CONFIG_DEF);
+    }
+    pintar();
+  }, function(){
+    fallo = "sin-permiso";
+    pintar();
+  });
+}
+
+/* ============ lectura del estado ============ */
+function gente(ambito, slot){
+  var rama = (S.gente[ambito] || {})[slot] || {};
+  return Object.keys(rama).map(function(k){
+    var p = rama[k] || {};
+    return {k:k, n:p.n || "", d:p.d || ""};
+  }).sort(function(a,b){ return (a.n||"").localeCompare(b.n||"","es"); });
+}
+function responsable(ambito, slot){
+  return (S.resp[ambito] || {})[slot] || null;
+}
+function cupoDe(ambito, slot){
+  if (ambito !== "cadena") return 0;
+  for (var i=0;i<FRANJAS.length;i++) if (FRANJAS[i].id === slot) return FRANJAS[i].cupo;
+  return 0;
+}
+
+/* ============ escritura ============ */
+function avisar(txt, mal){ aviso = {txt:txt, mal:!!mal}; pintar(); }
+
+function miNombre(){
+  var el = document.getElementById("miNombre");
+  var n = el ? el.value : (ls("relevo:nombre")||"");
+  return String(n).replace(/\s+/g," ").trim().slice(0,42);
+}
+
+API.recordarNombre = function(v){ ls("relevo:nombre", String(v).replace(/\s+/g," ").slice(0,42)); };
+
+API.unir = function(ambito, slot){
+  if (!db) return;
+  var n = miNombre();
+  if (!n){
+    avisar("Escribe tu nombre arriba antes de tomar un turno.", true);
+    var el = document.getElementById("miNombre"); if (el) el.focus();
+    return;
+  }
+  ls("relevo:nombre", n);
+  aviso = null;
+  var cupo = cupoDe(ambito, slot);
+  var k = claveDe(n);
+  db.ref("tablero/gente/"+ambito+"/"+slot).transaction(function(actual){
+    var m = actual || {};
+    if (m[k]) return m;
+    if (cupo && Object.keys(m).length >= cupo) return;
+    m[k] = {n:n, d:miId, t:Date.now()};
+    return m;
+  }, function(err, comprometido){
+    if (err) avisar("No se pudo guardar. Revisa tu conexión.", true);
+    else if (!comprometido) avisar("Ese turno se llenó mientras te apuntabas. Elige otro.", true);
+  });
+};
+
+API.salir = function(ambito, slot, k){
+  if (!db) return;
+  db.ref("tablero/gente/"+ambito+"/"+slot+"/"+k).remove();
+};
+
+API.pantalla = function(on){
+  ls("relevo:pantalla", on ? "si" : "no");
+  document.body.classList.toggle("pantalla", !!on);
+};
+
+API.toggleAdmin = function(){ adminAbierto = !adminAbierto; aviso = null; pintar(); };
+
+API.entrar = function(){
+  var v = document.getElementById("pinEntrada").value.trim();
+  if (v === String(S.config.pin)){ desbloqueado = true; ss("relevo:admin","si"); aviso = null; }
+  else aviso = {txt:"Código incorrecto.", mal:true};
+  pintar();
+};
+
+API.estrategia = function(cual){
+  if (!db || S.config.estrategia === cual) return;
+  db.ref("tablero/config/estrategia").set(cual);
+};
+
+API.guardarConfig = function(){
+  if (!db) return;
+  var g = function(id){ var e = document.getElementById(id); return e ? e.value : ""; };
+  var dir = g("cfgDirectivos").split("\n").map(function(s){return s.trim();}).filter(Boolean);
+  db.ref("tablero/config").update({
+    mes: g("cfgMes").trim() || S.config.mes,
+    lema: g("cfgLema").trim(),
+    pin: g("cfgPin").trim() || S.config.pin,
+    directivos: dir.length ? dir : S.config.directivos,
+    cadenaFecha: g("cfgFechaCadena").trim(),
+    semanaFechas: g("cfgFechasSemana").trim(),
+    minutos: parseInt(g("cfgMinutos"),10) || 5,
+    matFecha: g("cfgMatFecha").trim(),
+    matHora: g("cfgMatHora").trim(),
+    matLugar: g("cfgMatLugar").trim(),
+    matPrograma: g("cfgMatPrograma")
+  }).then(function(){ avisar("Cambios guardados."); });
+};
+
+API.sortear = function(){
+  if (!db) return;
+  var d = (S.config.directivos || []).slice();
+  for (var i=d.length-1;i>0;i--){ var j = Math.floor(Math.random()*(i+1)); var t=d[i]; d[i]=d[j]; d[j]=t; }
+  var ambito = S.config.estrategia === "semana" ? "semana" : "cadena";
+  var lista = ambito === "semana" ? DIAS_ID : FRANJAS;
+  var obj = {};
+  for (var k=0;k<lista.length;k++) obj[lista[k].id] = k < d.length ? d[k] : null;
+  db.ref("tablero/resp/"+ambito).set(obj);
+};
+
+API.abrirCerrar = function(){
+  if (!db) return;
+  db.ref("tablero/config/abierto").set(!S.config.abierto);
+};
+
+API.vaciar = function(){
+  if (!db) return;
+  if (!confirmandoVaciar){
+    confirmandoVaciar = true; pintar();
+    setTimeout(function(){ confirmandoVaciar = false; pintar(); }, 6000);
+    return;
+  }
+  confirmandoVaciar = false;
+  db.ref("tablero/gente").remove();
+};
+
+/* ============ pintado ============ */
+function nombreCorto(linea){ return String(linea).split("|")[0].trim(); }
+
+function totales(){
+  var e = S.config.estrategia;
+  if (e === "cadena"){
+    var t=0, c=0;
+    FRANJAS.forEach(function(f){ t += gente("cadena", f.id).length; c += f.cupo; });
+    return {t:t, c:c};
+  }
+  if (e === "semana"){
+    var t2=0;
+    DIAS_ID.forEach(function(d){ t2 += gente("semana", d.id).length; });
+    return {t:t2, c:0};
+  }
+  return {t: gente("matutino","todos").length, c:0};
+}
+
+function listaGente(ambito, slot){
+  var g = gente(ambito, slot);
+  if (!g.length) return '<p class="vacio">Nadie ha tomado este turno todavía.</p>';
+  return '<ul class="lista">' + g.map(function(p){
+    var mio = p.d === miId;
+    var puede = mio || desbloqueado;
+    return '<li class="'+(mio?"yo":"")+'">' + esc(p.n)
+      + (puede ? '<button class="quitar" aria-label="Quitar a '+esc(p.n)+'" onclick="RELEVO.salir(\''+ambito+'\',\''+slot+'\',\''+esc(p.k)+'\')">×</button>' : '')
+      + '</li>';
+  }).join("") + '</ul>';
+}
+
+function vistaCadena(){
+  var abierto = S.config.abierto;
+  var libresElite = FRANJAS.filter(function(f){return f.elite;})
+    .reduce(function(a,f){ return a + Math.max(0, f.cupo - gente("cadena",f.id).length); }, 0);
+
+  var html = '<section class="seccion-titulo"><h2>Nueve horas, nueve relevos</h2>'
+    + '<p>' + esc(S.config.cadenaFecha) + '</p></section>';
+
+  html += '<div class="aviso-elite"><div class="marca">◆</div><div>'
+    + '<h3>Escuadrón Élite · 1:00 a 5:00 a. m.</h3>'
+    + '<p>Las cuatro horas más duras de la noche. Solo <b>5 lugares por hora</b> y quedan <b>'
+    + libresElite + '</b> en total. No cualquiera aguanta la madrugada.</p></div></div>';
+
+  html += '<div class="rejilla">' + FRANJAS.map(function(x){
+    var g = gente("cadena", x.id);
+    var lleno = g.length >= x.cupo;
+    var libres = x.cupo - g.length;
+    var r = responsable("cadena", x.id);
+    var pct = Math.round(g.length / x.cupo * 100);
+    return '<article class="turno' + (x.elite?" elite":"") + (lleno?" lleno":" abierto-lugar") + '">'
+      + '<div class="turno-alto"><div class="reloj"><span class="num">'+pad(x.ini)+'</span>'
+      + '<span class="rango">'+rango(x.ini)+'</span></div>'
+      + '<span class="insignia '+(lleno?"lleno":(x.elite?"elite":""))+'">'
+      + (lleno ? "Completo" : (x.elite ? "Élite" : "Abierto")) + '</span></div>'
+      + '<p class="responsable '+(r?"":"vacante")+'">Responsable: <b>'
+      + (r ? esc(nombreCorto(r)) : "sin asignar") + '</b></p>'
+      + listaGente("cadena", x.id)
+      + '<div><div class="barrita"><i style="width:'+pct+'%"></i></div></div>'
+      + '<div class="turno-bajo"><span class="cupo '+(libres<=2&&!lleno?"escaso":"")+'"><b>'
+      + g.length+'</b> / '+x.cupo+(lleno?"":" · quedan "+libres)+'</span>'
+      + (lleno || !abierto ? ''
+         : '<button class="primario" onclick="RELEVO.unir(\'cadena\',\''+x.id+'\')">Tomar esta hora</button>')
+      + '</div></article>';
+  }).join("") + '</div>';
+
+  html += '<div class="reglas">'
+    + '<div class="regla"><h4>Cómo funciona</h4><p>Cada grupo ora una hora completa, cada quien desde donde esté. No hay que salir de casa.</p></div>'
+    + '<div class="regla"><h4>La estafeta</h4><p>Al terminar tu hora, reportas en el grupo de WhatsApp y le pasas la estafeta al grupo siguiente.</p></div>'
+    + '<div class="regla"><h4>Despertarse</h4><p>Llámense entre ustedes, pongan alarmas, organícense como quieran. Lo único obligatorio es reportar el relevo.</p></div>'
+    + '<div class="regla"><h4>El directivo</h4><p>Cada hora tiene un directivo responsable que recuerda, anima y confirma que el relevo se dio.</p></div>'
+    + '</div>';
+  return html;
+}
+
+function vistaSemana(){
+  var min = S.config.minutos || 5;
+  var abierto = S.config.abierto;
+  var html = '<section class="seccion-titulo"><h2>Cinco minutos, todos los días</h2>'
+    + '<p>' + esc(S.config.semanaFechas) + ' · ' + min + ' minutos diarios, a la hora que puedas</p></section>';
+
+  html += '<div class="rejilla">' + DIAS_ID.map(function(d){
+    var g = gente("semana", d.id);
+    var r = responsable("semana", d.id);
+    return '<article class="turno abierto-lugar">'
+      + '<div class="turno-alto"><div class="reloj"><span class="num" style="font-size:1.9rem">'+esc(d.nombre)+'</span>'
+      + '<span class="rango">'+min+' minutos, donde estés</span></div>'
+      + '<span class="insignia">'+g.length+'</span></div>'
+      + '<p class="responsable '+(r?"":"vacante")+'">Responsable: <b>'
+      + (r ? esc(nombreCorto(r)) : "sin asignar") + '</b></p>'
+      + listaGente("semana", d.id)
+      + '<div class="turno-bajo"><span class="cupo"><b>'+g.length+'</b> orando este día</span>'
+      + (!abierto ? '' : '<button class="primario" onclick="RELEVO.unir(\'semana\',\''+d.id+'\')">Este día oro yo</button>')
+      + '</div></article>';
+  }).join("") + '</div>';
+
+  html += '<div class="reglas">'
+    + '<div class="regla"><h4>Sin horario</h4><p>No hay hora fija. Solo '+min+' minutos en el día que elegiste, donde puedas.</p></div>'
+    + '<div class="regla"><h4>Puedes repetir</h4><p>Si quieres orar más de un día, apúntate en todos los que quieras.</p></div>'
+    + '<div class="regla"><h4>El directivo</h4><p>El responsable del día recuerda y anima a quienes lo eligieron.</p></div>'
+    + '<div class="regla"><h4>El objetivo</h4><p>Cinco minutos no son muchos. La meta es el hábito, no la hazaña.</p></div>'
+    + '</div>';
+  return html;
+}
+
+function vistaMatutino(){
+  var c = S.config;
+  var g = gente("matutino","todos");
+  var filas = String(c.matPrograma||"").split("\n").map(function(l){return l.trim();}).filter(Boolean);
+
+  var html = '<section class="seccion-titulo"><h2>Matutino presencial</h2>'
+    + '<p>' + esc(c.matFecha) + ' · ' + esc(c.matHora) + ' · ' + esc(c.matLugar) + '</p></section>';
+
+  html += '<div class="rejilla" style="grid-template-columns:1fr">';
+  html += '<article class="turno abierto-lugar">'
+    + '<div class="turno-alto"><div class="reloj"><span class="num" style="font-size:2rem">Programa</span>'
+    + '<span class="rango">'+esc(c.matHora)+' · '+esc(c.matLugar)+'</span></div></div>'
+    + '<ul class="lista" style="flex-direction:column;align-items:stretch">'
+    + filas.map(function(l){
+        var p = l.split("|");
+        return '<li style="border-radius:10px;justify-content:flex-start;gap:12px">'
+          + '<b style="font-variant-numeric:tabular-nums;color:var(--lampara);min-width:52px">'+esc((p[0]||"").trim())+'</b>'
+          + '<span>'+esc((p[1]||"").trim())+'</span>'
+          + (p[2] ? '<span style="color:var(--tenue-2);margin-left:auto">'+esc(p[2].trim())+'</span>' : '')
+          + '</li>';
+      }).join("")
+    + '</ul></article>';
+
+  html += '<article class="turno '+(g.length?"abierto-lugar":"")+'">'
+    + '<div class="turno-alto"><div class="reloj"><span class="num">'+g.length+'</span>'
+    + '<span class="rango">confirmaron que llegan</span></div>'
+    + '<span class="insignia">Asistencia</span></div>'
+    + listaGente("matutino","todos")
+    + '<div class="turno-bajo"><span class="cupo">Se abre el templo a las '+esc(c.matHora)+'</span>'
+    + (!c.abierto ? '' : '<button class="primario" onclick="RELEVO.unir(\'matutino\',\'todos\')">Ahí estaré</button>')
+    + '</div></article>';
+  html += '</div>';
+  return html;
+}
+
+function campo(id,etq,val,tipo){
+  return '<div class="campo"><label for="'+id+'">'+esc(etq)+'</label>'
+    + '<input type="'+(tipo||"text")+'" id="'+id+'" value="'+esc(val)+'"></div>';
+}
+function area(id,etq,val,pista){
+  return '<div class="campo"><label for="'+id+'">'+esc(etq)+'</label>'
+    + '<textarea id="'+id+'">'+esc(val)+'</textarea>'
+    + '<span class="pista">'+esc(pista)+'</span></div>';
+}
+
+function panelAdmin(){
+  if (!adminAbierto) return "";
+  if (!desbloqueado){
+    return '<section class="panel"><h2>Panel de la directiva</h2>'
+      + '<div class="fila-acc"><input type="password" id="pinEntrada" placeholder="Código" style="max-width:180px" '
+      + 'onkeydown="if(event.key===\'Enter\')RELEVO.entrar()">'
+      + '<button class="primario" onclick="RELEVO.entrar()">Entrar</button>'
+      + '<button class="fantasma" onclick="RELEVO.toggleAdmin()">Cerrar</button></div>'
+      + '<span class="pista">Solo la directiva. El código se cambia aquí adentro.</span></section>';
+  }
+  var c = S.config, e = c.estrategia;
+  return '<section class="panel"><h2>Panel de la directiva</h2>'
+    + '<div class="campo"><label>Estrategia activa</label><div class="elector">'
+    + '<button class="'+(e==="cadena"?"activa":"")+'" onclick="RELEVO.estrategia(\'cadena\')">Cadena nocturna</button>'
+    + '<button class="'+(e==="semana"?"activa":"")+'" onclick="RELEVO.estrategia(\'semana\')">Semana de 5 minutos</button>'
+    + '<button class="'+(e==="matutino"?"activa":"")+'" onclick="RELEVO.estrategia(\'matutino\')">Matutino presencial</button>'
+    + '</div><span class="pista">Cambia lo que ven todos, al instante.</span></div>'
+    + '<div class="divisor"></div>'
+    + '<div class="fila-acc">'
+    + '<button onclick="RELEVO.sortear()">Sortear responsables al azar</button>'
+    + '<button onclick="RELEVO.abrirCerrar()">'+(c.abierto?"Cerrar inscripciones":"Abrir inscripciones")+'</button>'
+    + '<button class="peligro" onclick="RELEVO.vaciar()">'+(confirmandoVaciar?"¿Seguro? Toca otra vez":"Vaciar tablero (mes nuevo)")+'</button>'
+    + '</div>'
+    + '<span class="pista">El sorteo reparte a los directivos en la estrategia activa. Con 8 directivos y 9 horas, una hora queda sin responsable a propósito.</span>'
+    + '<div class="divisor"></div>'
+    + '<div class="campos">'
+    + campo("cfgMes","Mes / campaña", c.mes)
+    + campo("cfgPin","Código del panel", c.pin)
+    + campo("cfgFechaCadena","Fecha de la cadena nocturna", c.cadenaFecha)
+    + campo("cfgFechasSemana","Fechas de la semana de 5 min", c.semanaFechas)
+    + campo("cfgMinutos","Minutos por día", c.minutos, "number")
+    + campo("cfgMatFecha","Matutino · fecha", c.matFecha)
+    + campo("cfgMatHora","Matutino · hora", c.matHora)
+    + campo("cfgMatLugar","Matutino · lugar", c.matLugar)
+    + '</div><div class="campos">'
+    + area("cfgLema","Lema", c.lema, "Una línea que resuma el mes.")
+    + area("cfgDirectivos","Directiva (uno por línea)", (c.directivos||[]).join("\n"), "Formato: Nombre | Cargo")
+    + area("cfgMatPrograma","Programa del matutino", c.matPrograma, "Formato: hora | punto | responsable")
+    + '</div>'
+    + '<div class="fila-acc"><button class="primario" onclick="RELEVO.guardarConfig()">Guardar cambios</button>'
+    + '<button class="fantasma" onclick="RELEVO.toggleAdmin()">Cerrar panel</button></div>'
+    + '</section>';
+}
+
+function pantallaFallo(){
+  if (fallo === "falta-config"){
+    return '<div class="envoltura"><header class="cabecera">'
+      + '<span class="rotulo">Embajadores de Cristo · Nueva Jerusalén</span>'
+      + '<h1>Falta <em>conectar</em> la base</h1>'
+      + '<p class="lema">Esta página todavía no tiene la configuración de Firebase. Pega el bloque '
+      + '<code>firebaseConfig</code> del proyecto dentro de <code>index.html</code> y vuelve a subirla.</p>'
+      + '</header></div>';
+  }
+  return '<div class="envoltura"><header class="cabecera">'
+    + '<span class="rotulo">Embajadores de Cristo · Nueva Jerusalén</span>'
+    + '<h1>No se pudo <em>conectar</em></h1>'
+    + '<p class="lema">El tablero no logra leer la base de datos. Revisa tu conexión a internet; '
+    + 'si el problema sigue, avísale a la directiva.</p></header></div>';
+}
+
+function pintar(){
+  var raiz = document.getElementById("app");
+  if (fallo){ raiz.innerHTML = pantallaFallo(); return; }
+  if (!listo){
+    raiz.innerHTML = '<div class="envoltura"><p class="cargando">Cargando el tablero…</p></div>';
+    return;
+  }
+
+  var c = S.config, t = totales();
+  var titulo = c.estrategia === "cadena" ? ["Cadena de la","noche"]
+             : c.estrategia === "semana" ? ["Cinco minutos","cada día"]
+             : ["Matutino","de madrugada"];
+
+  var h = '<div class="envoltura">';
+
+  h += '<header class="cabecera">'
+    + '<span class="rotulo">Embajadores de Cristo · Nueva Jerusalén</span>'
+    + '<h1>'+esc(titulo[0])+' <em>'+esc(titulo[1])+'</em></h1>'
+    + (c.lema ? '<p class="lema">'+esc(c.lema)+'</p>' : '')
+    + '<div class="cinta">'
+    + '<span class="dato">'+esc(c.mes)+'</span>'
+    + (c.abierto
+        ? '<span class="dato"><b>'+t.t+'</b> apuntados' + (t.c ? ' de <b>'+t.c+'</b> lugares' : '') + '</span>'
+        : '<span class="dato cerrado">Inscripciones cerradas</span>')
+    + '<span class="dato '+(conectado?"vivo":"")+'"><i class="punto"></i>'+(conectado?"En vivo":"Reconectando…")+'</span>'
+    + '</div></header>';
+
+  if (t.c){
+    var pct = Math.round(t.t/t.c*100);
+    h += '<div class="medidor"><div class="medidor-cifras">'
+      + '<span class="grande">'+t.t+' <span>/ '+t.c+'</span></span>'
+      + '<span class="nota">'+pct+'% de los lugares tomados<br>faltan '+(t.c-t.t)+' por llenar</span>'
+      + '</div><div class="riel"><i style="width:'+pct+'%"></i></div></div>';
+  }
+
+  h += '<div class="barra"><div class="barra-yo">'
+    + '<label for="miNombre">Tu nombre</label>'
+    + '<input type="text" id="miNombre" placeholder="Escribe tu nombre" value="'+esc(ls("relevo:nombre")||"")
+    + '" maxlength="42" oninput="RELEVO.recordarNombre(this.value)">'
+    + '</div><div class="barra-acc">'
+    + '<button class="fantasma" onclick="RELEVO.pantalla(true)">Modo pantalla</button>'
+    + '<button class="fantasma" onclick="RELEVO.toggleAdmin()">Directiva</button>'
+    + '</div></div>';
+
+  if (aviso) h += '<div class="aviso '+(aviso.mal?"mal":"")+'">'+esc(aviso.txt)+'</div>';
+  if (!c.abierto) h += '<div class="aviso"><b>Inscripciones cerradas.</b> El tablero queda visible, pero ya no se puede tomar turnos.</div>';
+
+  h += panelAdmin();
+
+  h += c.estrategia === "cadena" ? vistaCadena()
+     : c.estrategia === "semana" ? vistaSemana()
+     : vistaMatutino();
+
+  h += '<p class="verso">Sobre tus muros, oh Jerusalén, he puesto guardas; todo el día y toda la noche no callarán jamás.'
+    + '<cite>Isaías 62:6</cite></p>';
+  h += '<p class="pie-nota">Embajadores de Cristo · Nueva Jerusalén</p>';
+  h += '</div>';
+
+  raiz.innerHTML = h;
+  if (ls("relevo:pantalla") === "si") document.body.classList.add("pantalla");
+}
+
+pintar();
+arrancar();
+})();
+
+</script>
+</body>
+</html>
