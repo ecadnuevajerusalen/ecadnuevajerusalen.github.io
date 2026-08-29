@@ -596,7 +596,6 @@ API.cambiarPerfil = function(){
 API.pantalla = function(on){
   ls("relevo:pantalla", on ? "si" : "no");
   document.body.classList.toggle("pantalla", !!on);
-  if (on && !perfil){ perfil = "embajador"; }
   pintar();
 };
 
@@ -995,7 +994,6 @@ function portada(){
       + '<button class="primario" onclick="RELEVO.entrarComo(\'embajador\')">Soy Embajador</button>'
       + '<button onclick="RELEVO.entrarComo(\'directiva\')">Soy de la Directiva</button>'
       + '</div>'
-      + '<span class="pista">Los Embajadores eligen su turno. La directiva además administra el tablero.</span>'
       + '</div>';
   } else {
     h += '<div class="acceso">'
@@ -1009,7 +1007,6 @@ function portada(){
   }
 
   if (aviso) h += '<p class="aviso '+(aviso.mal?"mal":"")+'">'+esc(aviso.txt)+'</p>';
-  h += '<button class="enlace" onclick="RELEVO.pantalla(true)">Proyectar en pantalla</button>';
   h += '</div></div>';
   return h;
 }
@@ -1069,8 +1066,10 @@ function pintar(){
   h += '<div class="barra">'
     + '<span class="quien">'+(perfil === "directiva" ? "Directiva" : "Embajador")+' · <b>'+esc(miNombre())+'</b></span>'
     + '<div class="barra-acc">'
-    + (esDirectiva() ? '<button class="fantasma" onclick="RELEVO.toggleAdmin()">'+(adminAbierto?"Cerrar panel":"Panel")+'</button>' : '')
-    + '<button class="fantasma" onclick="RELEVO.pantalla(true)">Modo pantalla</button>'
+    + (esDirectiva()
+        ? '<button class="fantasma" onclick="RELEVO.toggleAdmin()">'+(adminAbierto?"Cerrar panel":"Panel")+'</button>'
+          + '<button class="fantasma" onclick="RELEVO.pantalla(true)">Proyectar</button>'
+        : '')
     + '<button class="fantasma" onclick="RELEVO.cambiarPerfil()">Salir</button>'
     + '</div></div>';
 
@@ -1088,7 +1087,8 @@ function pintar(){
   h += '</div>';
 
   raiz.innerHTML = h;
-  if (ls("relevo:pantalla") === "si") document.body.classList.add("pantalla");
+  var proyectando = esDirectiva() && ls("relevo:pantalla") === "si";
+  document.body.classList.toggle("pantalla", proyectando);
 }
 
 pintar();
