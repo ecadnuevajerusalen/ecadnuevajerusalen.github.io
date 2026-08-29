@@ -17,309 +17,303 @@
 <style>
 /* ===============================================================
    Oración Implacable — hoja de estilo
-   Paleta tomada del escudo: azul marino, azul ala, oro de la antorcha.
-   Tipografía: Times New Roman (Tinos como respaldo web).
+   Negro tinta cálido, filetes dorados, tipografía Times.
+   Sin degradados, sin cursivas, sin esquinas redondeadas.
    =============================================================== */
 :root{
-  --marino:#081228;
-  --marino-2:#0E1B3A;
-  --superficie:#101E42;
-  --superficie-2:#16264F;
-  --borde:#25396B;
-  --borde-suave:#1B2A55;
-  --texto:#EEF3FF;
-  --tenue:#9FB0D4;
-  --tenue-2:#6E80AA;
-  --oro:#F5C542;
-  --oro-hondo:#D99B1F;
-  --ala:#4FA3F7;
-  --brasa:#F2543D;
-  --alba:#C6D8F2;
-  --media:#9B8CF7;
-  --exito:#4FD18B;
+  --tinta:#121110;
+  --tinta-2:#1A1815;
+  --tinta-3:#221F1B;
+  --hueso:#EFEBE2;
+  --tenue:#A49C8C;
+  --tenue-2:#78705F;
+  --oro:#C9A227;
+  --oro-claro:#E3C463;
+  --linea:#2E2A24;
+  --linea-oro:#4A3D18;
+  --peltre:#8FA6BC;
+  --pizarra:#8079AE;
+  --perla:#DCCFB4;
+  --alerta:#C4543D;
+  --exito:#7E9B58;
   --serif:"Times New Roman",Tinos,"Liberation Serif",Georgia,serif;
-  --r:10px;
 }
 
-/* colores por grupo */
-.g1{--tono:var(--ala);   --tono-suave:rgba(79,163,247,.12);  --tono-borde:rgba(79,163,247,.34)}
-.g2{--tono:var(--media); --tono-suave:rgba(155,140,247,.13); --tono-borde:rgba(155,140,247,.36)}
-.g3{--tono:var(--oro);   --tono-suave:rgba(245,197,66,.16);  --tono-borde:rgba(245,197,66,.55)}
-.g4{--tono:var(--alba);  --tono-suave:rgba(198,216,242,.11); --tono-borde:rgba(198,216,242,.32)}
+/* colores por grupo — metales, el oro reservado a la élite */
+.g1{--tono:var(--peltre)}
+.g2{--tono:var(--pizarra)}
+.g3{--tono:var(--oro)}
+.g4{--tono:var(--perla)}
 
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{
   margin:0;
-  background:
-    radial-gradient(1200px 680px at 76% -16%, #172A5C 0%, rgba(23,42,92,0) 62%),
-    radial-gradient(900px 560px at 4% 106%, #0F2350 0%, rgba(15,35,80,0) 60%),
-    var(--marino);
-  background-attachment:fixed;
-  color:var(--texto);
+  background:var(--tinta);
+  color:var(--hueso);
   font-family:var(--serif);
   font-size:17px;
   line-height:1.5;
 }
 
-/* ---------- tipografía base ---------- */
+/* ---------- recursos tipográficos ---------- */
 .rotulo{
-  display:block;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;
+  display:block;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;
   color:var(--tenue-2);
 }
+.sep{
+  display:inline-block;width:1px;height:.8em;background:var(--linea);
+  margin:0 .7em;vertical-align:-.05em;
+}
 .titular{
-  font-family:var(--serif);font-weight:700;margin:.12em 0 0;
-  font-size:clamp(2.1rem,5.4vw,3.6rem);line-height:1.02;letter-spacing:-.005em;
-  text-wrap:balance;
+  font-weight:400;margin:.18em 0 0;
+  font-size:clamp(2.1rem,5.2vw,3.5rem);line-height:1.03;
+  letter-spacing:.005em;text-wrap:balance;
 }
 .lema{
-  margin:.35em 0 0;color:var(--oro);font-style:italic;
-  font-size:clamp(1rem,1.9vw,1.35rem);
+  margin:.5em 0 0;color:var(--oro);
+  font-size:clamp(.76rem,1.15vw,.88rem);
+  letter-spacing:.22em;text-transform:uppercase;
+}
+.regla-doble{
+  border:0;border-top:1px solid var(--linea-oro);border-bottom:1px solid var(--linea-oro);
+  height:3px;margin:0;width:100%;
 }
 
 /* ---------- logo ---------- */
 .logo{display:block;flex:none}
-img.logo.grande{width:150px;height:auto;margin:0 auto 14px;
-  filter:drop-shadow(0 6px 20px rgba(0,0,0,.55))}
-img.logo.chico{width:76px;height:auto;
-  filter:drop-shadow(0 4px 14px rgba(0,0,0,.5))}
+img.logo.grande{width:132px;height:auto;margin:0 auto}
+img.logo.chico{width:70px;height:auto}
 .monograma{
-  display:grid;place-items:center;border-radius:50%;
-  background:var(--superficie);border:2px solid var(--oro);color:var(--oro);
-  font-weight:700;letter-spacing:.06em;
+  display:grid;place-items:center;border:1px solid var(--oro);color:var(--oro);
+  letter-spacing:.1em;
 }
-.monograma.grande{width:110px;height:110px;font-size:2.4rem;margin:0 auto 14px}
-.monograma.chico{width:64px;height:64px;font-size:1.4rem}
+.monograma.grande{width:104px;height:104px;font-size:2.2rem;margin:0 auto}
+.monograma.chico{width:62px;height:62px;font-size:1.3rem}
 
 /* ---------- portada ---------- */
-.portada{min-height:100vh;display:grid;place-items:center;padding:34px 18px}
+.portada{min-height:100vh;display:grid;place-items:center;padding:40px 18px}
 .portada-caja{
-  width:100%;max-width:620px;text-align:center;
-  display:flex;flex-direction:column;align-items:center;gap:0;
+  width:100%;max-width:600px;text-align:center;
+  border:1px solid var(--linea-oro);padding:44px 40px 38px;background:var(--tinta-2);
 }
-.portada .rotulo{margin-top:2px}
-.portada .verso{margin:24px 0 4px}
-.portada .verso p{font-size:clamp(1.2rem,2.6vw,1.85rem)}
-.cargando{color:var(--tenue);margin-top:18px}
+.portada .rotulo{margin-top:20px}
+.portada .regla-doble{margin:22px 0}
+.portada .verso{margin:0}
+.cargando{color:var(--tenue);margin:16px 0 0;letter-spacing:.14em;
+  text-transform:uppercase;font-size:.8rem}
 
-.acceso{
-  width:100%;margin-top:26px;padding:22px;
-  background:var(--superficie);border:1px solid var(--borde);border-radius:var(--r);
-  display:flex;flex-direction:column;gap:10px;align-items:stretch;text-align:left;
+.acceso{margin-top:26px;text-align:left;display:flex;flex-direction:column;gap:10px}
+.acceso label{
+  font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--tenue-2);
 }
-.acceso label{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--tenue-2)}
-.acceso-botones{display:flex;gap:10px;flex-wrap:wrap}
-.acceso-botones button{flex:1 1 180px}
-.pista{font-size:.84rem;color:var(--tenue-2);font-style:italic}
+.acceso-botones{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.acceso-botones button{flex:1 1 170px}
+.pista{font-size:.82rem;color:var(--tenue-2);line-height:1.45}
 .enlace{
-  margin-top:20px;background:none;border:0;color:var(--tenue-2);
-  font-family:var(--serif);font-size:.9rem;text-decoration:underline;
-  text-underline-offset:4px;cursor:pointer;padding:6px;
+  margin-top:24px;background:none;border:0;color:var(--tenue-2);
+  font-family:var(--serif);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  cursor:pointer;padding:6px;border-bottom:1px solid var(--linea);
 }
-.enlace:hover{color:var(--oro)}
+.enlace:hover{color:var(--oro);border-bottom-color:var(--linea-oro)}
 
 /* ---------- controles ---------- */
 input[type=text],input[type=password],input[type=number],textarea{
-  font-family:var(--serif);font-size:1.02rem;color:var(--texto);
-  background:var(--marino);border:1px solid var(--borde);border-radius:8px;
+  font-family:var(--serif);font-size:1rem;color:var(--hueso);
+  background:var(--tinta);border:1px solid var(--linea);border-radius:0;
   padding:11px 13px;width:100%;min-width:0;
 }
-input:focus-visible,textarea:focus-visible{outline:2px solid var(--oro);outline-offset:1px;border-color:transparent}
-input::placeholder,textarea::placeholder{color:var(--tenue-2);font-style:italic}
+input:focus-visible,textarea:focus-visible{outline:1px solid var(--oro);outline-offset:2px;border-color:var(--linea-oro)}
+input::placeholder,textarea::placeholder{color:var(--tenue-2)}
 
 button{
-  font-family:var(--serif);font-size:.98rem;font-weight:700;cursor:pointer;
-  border-radius:8px;padding:10px 16px;border:1px solid var(--borde);
-  background:var(--superficie-2);color:var(--texto);transition:.15s ease;
+  font-family:var(--serif);font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;
+  cursor:pointer;border-radius:0;padding:11px 18px;
+  border:1px solid var(--linea);background:transparent;color:var(--hueso);
+  transition:border-color .15s ease,color .15s ease,background-color .15s ease;
 }
 button:hover:not(:disabled){border-color:var(--tenue-2)}
-button:focus-visible{outline:2px solid var(--oro);outline-offset:2px}
-button.primario{background:var(--oro);color:#2A1C00;border-color:transparent}
-button.primario:hover:not(:disabled){background:#FFD666}
-button.fantasma{background:transparent;font-weight:400;font-size:.9rem;padding:7px 13px}
-button.peligro{border-color:rgba(242,84,61,.5);color:var(--brasa);background:transparent}
+button:focus-visible{outline:1px solid var(--oro);outline-offset:2px}
+button.primario{background:var(--oro);color:#17140B;border-color:var(--oro)}
+button.primario:hover:not(:disabled){background:var(--oro-claro);border-color:var(--oro-claro)}
+button.fantasma{font-size:.68rem;padding:8px 13px;color:var(--tenue)}
+button.fantasma:hover{color:var(--hueso)}
+button.peligro{border-color:#4A2A22;color:var(--alerta)}
 
 /* ---------- cabecera del tablero ---------- */
-.envoltura{max-width:1620px;margin:0 auto;padding:18px 20px 34px;display:flex;flex-direction:column;gap:13px}
-.cabecera{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;justify-content:space-between}
-.cab-marca{display:flex;gap:16px;align-items:center;min-width:0}
+.envoltura{max-width:1620px;margin:0 auto;padding:20px 22px 34px;
+  display:flex;flex-direction:column;gap:14px}
+.cabecera{display:flex;flex-direction:column;gap:14px}
+.cab-alto{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;justify-content:space-between}
+.cab-marca{display:flex;gap:18px;align-items:center;min-width:0}
 .cab-txt{min-width:0}
-.cab-datos{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
-.dato{
-  display:inline-flex;align-items:center;gap:7px;
-  background:var(--superficie);border:1px solid var(--borde-suave);
-  border-radius:999px;padding:5px 14px;font-size:.86rem;color:var(--tenue);
-}
-.dato b{color:var(--texto);font-variant-numeric:tabular-nums}
-.dato.fuerte{border-color:rgba(245,197,66,.4);color:var(--oro)}
-.dato.fuerte b{color:var(--oro)}
-.dato.cerrado{border-color:rgba(242,84,61,.45);color:var(--brasa)}
-.dato .punto{width:7px;height:7px;border-radius:99px;background:var(--brasa);flex:none}
-.dato.vivo{border-color:rgba(79,209,139,.35);color:var(--exito)}
-.dato.vivo .punto{background:var(--exito);animation:latido 2.4s ease-in-out infinite}
-@keyframes latido{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* franja de datos, sin píldoras ni puntos */
+.meta{display:flex;flex-wrap:wrap;align-items:stretch}
+.meta-item{padding:2px 22px;border-left:1px solid var(--linea);display:flex;flex-direction:column;gap:2px}
+.meta-item:first-child{border-left:0;padding-left:0}
+.meta-item:last-child{padding-right:0}
+.meta-et{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--tenue-2)}
+.meta-va{font-size:.95rem;color:var(--hueso);font-variant-numeric:tabular-nums;white-space:nowrap}
+.meta-va.oro{color:var(--oro)}
+.meta-va.mal{color:var(--alerta)}
+.meta-va.bien{color:var(--exito)}
 
 .barra{
-  display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;
-  border-top:1px solid var(--borde-suave);border-bottom:1px solid var(--borde-suave);
-  padding:9px 2px;
+  display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+  border-top:1px solid var(--linea);border-bottom:1px solid var(--linea);padding:8px 0;
 }
-.quien{font-size:.9rem;color:var(--tenue)}
-.quien b{color:var(--texto)}
-.barra-acc{display:flex;gap:7px;flex-wrap:wrap}
+.quien{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--tenue-2)}
+.quien b{color:var(--hueso);font-weight:400;letter-spacing:.08em}
+.barra-acc{display:flex;gap:8px;flex-wrap:wrap}
 
-.aviso{border-radius:var(--r);padding:12px 16px;font-size:.94rem;
-  border:1px solid var(--borde);background:var(--superficie);color:var(--tenue)}
-.aviso.mal{border-color:rgba(242,84,61,.45);color:#FFC7BE;background:rgba(242,84,61,.08)}
-.aviso b{color:var(--texto)}
-.sub{margin:0;color:var(--tenue);font-style:italic}
+.aviso{padding:11px 16px;font-size:.9rem;border:1px solid var(--linea);
+  background:var(--tinta-2);color:var(--tenue)}
+.aviso.mal{border-color:#4A2A22;color:#E0B7AC}
+.aviso b{color:var(--hueso);font-weight:400}
+.sub{margin:0;color:var(--tenue);font-size:.9rem}
 
 /* ---------- leyenda de grupos ---------- */
-.leyenda{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.ley{
-  border:1px solid var(--tono-borde);background:var(--tono-suave);
-  border-left:4px solid var(--tono);border-radius:var(--r);
-  padding:8px 13px;display:flex;flex-direction:column;gap:0;
+.leyenda{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--linea)}
+.ley{padding:11px 20px 9px;border-left:1px solid var(--linea);position:relative}
+.ley:first-child{border-left:0;padding-left:0}
+.ley::before{
+  content:"";position:absolute;top:-1px;left:0;right:0;height:2px;background:var(--tono);
 }
-.ley-n{font-weight:700;color:var(--tono);font-size:1.04rem;line-height:1.2}
-.ley-h{font-size:.82rem;color:var(--tenue);font-variant-numeric:tabular-nums}
-.ley-l{font-size:.82rem;color:var(--tenue-2)}
+.ley:first-child::before{left:0}
+.ley-n{display:block;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--tono)}
+.ley-d{display:block;margin-top:4px;font-size:.84rem;color:var(--tenue);
+  font-variant-numeric:tabular-nums}
+.ley-l{display:block;font-size:.8rem;color:var(--tenue-2)}
 
 /* ---------- tira de horarios ---------- */
-.tira{display:grid;grid-template-columns:repeat(9,1fr);gap:9px;align-items:stretch}
+.tira{display:grid;grid-template-columns:repeat(9,1fr);gap:10px;align-items:stretch}
 .tira.siete{grid-template-columns:repeat(7,1fr)}
 
 .col{
-  position:relative;display:flex;flex-direction:column;gap:8px;min-width:0;
-  background:linear-gradient(180deg,var(--tono-suave),rgba(0,0,0,0) 42%),var(--superficie);
-  border:1px solid var(--borde-suave);border-radius:var(--r);
-  padding:0 11px 10px;overflow:hidden;
+  display:flex;flex-direction:column;min-width:0;
+  background:var(--tinta-2);border:1px solid var(--linea);
+  border-top:2px solid var(--tono);padding:13px 13px 12px;
 }
-.col-cinta{height:4px;margin:0 -11px 8px;background:var(--tono)}
-.col.lleno{opacity:.92}
-.col.elite{
-  border-color:rgba(245,197,66,.5);
-  box-shadow:inset 0 0 0 1px rgba(245,197,66,.16), 0 6px 26px rgba(245,197,66,.10);
-}
-.col.elite .col-cinta{height:6px;background:linear-gradient(90deg,var(--oro-hondo),var(--oro) 45%,#FFE9A8)}
-.col.elite .col-hora{color:var(--oro)}
-.ley.destacada{
-  box-shadow:0 0 0 1px rgba(245,197,66,.28), 0 6px 24px rgba(245,197,66,.12);
-}
+.col.elite{border-color:var(--linea-oro);border-top-color:var(--oro);background:var(--tinta-3)}
 
-.col-cab{display:flex;flex-direction:column;gap:1px}
 .col-grupo{
-  font-size:.63rem;letter-spacing:.13em;text-transform:uppercase;
-  color:var(--tono);font-weight:700;line-height:1.25;min-height:2.5em;
+  display:block;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--tono);line-height:1.35;height:2.9em;overflow:hidden;
 }
-.col-hora{
-  font-size:2.5rem;line-height:.95;font-weight:700;letter-spacing:-.02em;
-  font-variant-numeric:tabular-nums;
-}
-.col-hora.dia{font-size:1.5rem;letter-spacing:0}
-.col-rango{font-size:.74rem;color:var(--tenue);font-variant-numeric:tabular-nums}
+.col-hora{display:block;font-size:2.6rem;line-height:1;font-variant-numeric:tabular-nums}
+.col.elite .col-hora{color:var(--oro)}
+.col-hora.dia{font-size:1.5rem;letter-spacing:.02em}
+.col-rango{display:block;margin-top:3px;font-size:.74rem;color:var(--tenue);
+  font-variant-numeric:tabular-nums}
 
 .col-libres{
-  margin:0;font-size:.84rem;color:var(--tenue);
-  border-top:1px solid var(--borde-suave);border-bottom:1px solid var(--borde-suave);
-  padding:5px 0;
+  margin:11px 0 0;padding:7px 0;font-size:.68rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--tenue-2);
+  border-top:1px solid var(--linea);border-bottom:1px solid var(--linea);
 }
-.col-libres b{color:var(--tono);font-size:1.15rem;font-weight:700}
-.col-libres.escaso{color:var(--oro)}
-.col-libres.cero{color:var(--exito);font-weight:700}
+.col-libres b{color:var(--tono);font-weight:400;font-size:1.05rem;letter-spacing:0}
+.col-libres.cero{color:var(--tenue-2)}
 
-.nombres{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px;flex:1}
+.nombres{list-style:none;margin:0;padding:0;flex:1}
 .nombres li{
-  display:flex;align-items:center;gap:4px;justify-content:space-between;
-  font-size:.86rem;line-height:1.22;padding:1px 0;
-  border-bottom:1px dotted var(--borde-suave);
+  display:flex;align-items:baseline;gap:6px;justify-content:space-between;
+  font-size:.87rem;line-height:1.3;padding:5px 0;border-bottom:1px solid var(--linea);
 }
-.nombres li:last-child{border-bottom:0}
 .nombres li span{overflow-wrap:anywhere}
-.nombres li.yo{color:var(--oro)}
-.nombres.ancha{flex-direction:row;flex-wrap:wrap;gap:6px 16px}
-.nombres.ancha li{border:0;flex:0 1 auto}
+.nombres li.yo span{color:var(--oro)}
+.nombres.ancha{display:flex;flex-wrap:wrap;gap:0 26px}
+.nombres.ancha li{border-bottom:0;flex:0 1 auto;padding:3px 0}
+.vacio{margin:0;flex:1;padding:7px 0;font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--tenue-2)}
 .quitar{
-  border:0;background:transparent;color:var(--tenue-2);padding:0 3px;
-  font-size:1.05rem;line-height:1;font-weight:400;flex:none;
+  border:0;background:transparent;color:var(--tenue-2);padding:0 2px;
+  font-size:.95rem;letter-spacing:0;line-height:1;flex:none;text-transform:none;
 }
-.quitar:hover{color:var(--brasa)}
-.vacio{margin:0;flex:1;font-size:.84rem;color:var(--tenue-2);font-style:italic}
+.quitar:hover{color:var(--alerta)}
 
-.col-resp{
-  margin:0;font-size:.74rem;color:var(--tenue-2);font-style:italic;
-  border-top:1px solid var(--borde-suave);padding-top:6px;overflow-wrap:anywhere;
-}
+.col-pie{margin-top:auto;padding-top:10px}
+.col-resp-et{display:block;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--tenue-2)}
+.col-resp{display:block;margin:2px 0 0;font-size:.82rem;color:var(--tenue);
+  overflow-wrap:anywhere}
 button.tomar{
-  width:100%;padding:8px 6px;font-size:.9rem;
-  background:var(--tono-suave);border:1px solid var(--tono-borde);color:var(--tono);
+  width:100%;margin-top:11px;padding:9px 6px;font-size:.68rem;
+  border-color:var(--tono);color:var(--tono);
 }
-button.tomar:hover{background:var(--tono);color:#0A1226;border-color:transparent}
-button.tomar.grande{margin-top:14px;padding:12px}
+button.tomar:hover{background:var(--tono);color:#17140B}
+button.tomar.grande{padding:13px;font-size:.74rem}
 
 /* ---------- matutino ---------- */
-.matutino{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.bloque{background:var(--superficie);border:1px solid var(--borde-suave);
-  border-radius:var(--r);padding:18px 20px}
-.bloque h3{margin:0 0 12px;font-size:1.2rem;font-weight:700}
-.programa{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
-.programa li{display:flex;gap:14px;align-items:baseline;
-  border-bottom:1px dotted var(--borde-suave);padding-bottom:7px}
-.programa li b{color:var(--oro);min-width:58px;font-variant-numeric:tabular-nums}
-.programa li em{margin-left:auto;color:var(--tenue-2);font-size:.86rem}
+.matutino{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.bloque{background:var(--tinta-2);border:1px solid var(--linea);
+  border-top:2px solid var(--oro);padding:20px 22px}
+.bloque h3{margin:0 0 4px;font-size:.72rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--oro);font-weight:400}
+.bloque .regla-doble{margin:12px 0 14px}
+.programa{list-style:none;margin:0;padding:0}
+.programa li{display:flex;gap:16px;align-items:baseline;
+  border-bottom:1px solid var(--linea);padding:8px 0}
+.programa li b{color:var(--hueso);font-weight:400;min-width:60px;
+  font-variant-numeric:tabular-nums}
+.programa li em{margin-left:auto;color:var(--tenue-2);font-size:.84rem;font-style:normal}
 
 /* ---------- reglas ---------- */
-.reglas{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;
-  border-top:1px solid var(--borde-suave);padding-top:13px}
-.regla h4{margin:0 0 4px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--oro)}
-.regla p{margin:0;font-size:.88rem;color:var(--tenue);line-height:1.4}
+.reglas{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0}
+.regla{padding:13px 22px 0;border-left:1px solid var(--linea);border-top:1px solid var(--linea)}
+.regla:first-child{border-left:0;padding-left:0}
+.regla h4{margin:0 0 5px;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--oro);font-weight:400}
+.regla p{margin:0;font-size:.87rem;color:var(--tenue);line-height:1.45}
 
 /* ---------- versículo ---------- */
-.verso{
-  margin:0;padding:20px;text-align:center;
-  border-top:1px solid rgba(245,197,66,.3);border-bottom:1px solid rgba(245,197,66,.3);
-}
+.verso{margin:0;padding:0;text-align:center}
+.verso .regla-doble{margin:0}
 .verso p{
-  margin:0 auto;max-width:30ch;font-style:italic;
-  font-size:clamp(1.12rem,2vw,1.72rem);line-height:1.28;text-wrap:balance;color:var(--texto);
+  margin:0;padding:24px 20px 16px;max-width:34ch;margin-inline:auto;
+  font-size:clamp(1.1rem,1.9vw,1.62rem);line-height:1.4;text-wrap:balance;color:var(--hueso);
 }
 .verso cite{
-  display:block;margin-top:9px;font-style:normal;
-  font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--oro);
+  display:block;padding-bottom:22px;font-style:normal;
+  font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;color:var(--oro);
 }
-.verso.banda{margin-top:8px}
 
 /* ---------- panel ---------- */
-.panel{background:var(--superficie);border:1px solid var(--borde);border-radius:var(--r);
-  padding:20px;display:flex;flex-direction:column;gap:16px}
-.panel h2{font-size:1.35rem;margin:0;font-weight:700}
-.campos{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
-.campo{display:flex;flex-direction:column;gap:5px}
-.campo label{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--tenue-2)}
-.campo textarea{min-height:108px;resize:vertical;font-size:.94rem;line-height:1.45}
+.panel{background:var(--tinta-2);border:1px solid var(--linea);
+  border-top:2px solid var(--oro);padding:22px;display:flex;flex-direction:column;gap:16px}
+.panel h2{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--oro);margin:0;font-weight:400}
+.campos{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.campo{display:flex;flex-direction:column;gap:6px}
+.campo label{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--tenue-2)}
+.campo textarea{min-height:110px;resize:vertical;font-size:.92rem;line-height:1.45}
 .elector{display:flex;flex-wrap:wrap;gap:8px}
-.elector button.activa{background:var(--oro);color:#2A1C00;border-color:transparent}
+.elector button.activa{background:var(--oro);color:#17140B;border-color:var(--oro)}
 .fila-acc{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.divisor{height:1px;background:var(--borde-suave)}
+.divisor{height:1px;background:var(--linea)}
 .salida{display:flex;flex-direction:column;gap:6px}
 .salida:empty{display:none}
-.salida textarea{min-height:190px;font-size:.86rem;line-height:1.4}
-.salida label{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--tenue-2)}
+.salida textarea{min-height:190px;font-size:.84rem;line-height:1.4}
+.salida label{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--tenue-2)}
 
 /* ---------- modo pantalla ---------- */
 .salir-pantalla{display:none}
 body.pantalla .barra,body.pantalla .panel,body.pantalla .reglas{display:none}
-body.pantalla .envoltura{max-width:none;padding:18px 24px 20px;gap:14px;min-height:100vh}
+body.pantalla .envoltura{max-width:none;padding:18px 26px 16px;gap:12px;min-height:100vh}
+body.pantalla .col{padding:11px 11px 10px}
+body.pantalla .verso p{padding:18px 20px 12px}
+body.pantalla .verso cite{padding-bottom:16px}
+body.pantalla .meta-item{padding-top:0;padding-bottom:0}
 body.pantalla .tira{flex:1 1 auto}
-body.pantalla .col-hora{font-size:3.1rem}
-body.pantalla .col-grupo{font-size:.72rem}
+body.pantalla .col-hora{font-size:3.2rem}
+body.pantalla .col-grupo{font-size:.68rem}
 body.pantalla .nombres li{font-size:1rem}
 body.pantalla .quitar{display:none}
 body.pantalla button.tomar{display:none}
-body.pantalla .ley-n{font-size:1.15rem}
-body.pantalla .verso p{font-size:1.7rem}
+body.pantalla .ley-n{font-size:.92rem}
+body.pantalla .verso p{font-size:1.6rem}
 body.pantalla .salir-pantalla{
-  display:block;position:fixed;right:14px;bottom:14px;z-index:9;opacity:.25;
+  display:block;position:fixed;right:16px;bottom:16px;z-index:9;opacity:.22;
 }
 body.pantalla .salir-pantalla:hover{opacity:1}
 
@@ -328,30 +322,30 @@ body.pantalla .salir-pantalla:hover{opacity:1}
   .tira{grid-template-columns:repeat(5,1fr)}
   .tira.siete{grid-template-columns:repeat(4,1fr)}
   .leyenda{grid-template-columns:repeat(2,1fr)}
+  .ley:nth-child(3){border-left:0;padding-left:0}
 }
 @media (max-width:899px){
   .tira,.tira.siete{grid-template-columns:repeat(3,1fr)}
   .matutino{grid-template-columns:1fr}
+  .meta-item{padding:2px 16px}
 }
 @media (max-width:599px){
   body{font-size:16px}
-  .envoltura{padding:14px 13px 36px;gap:11px}
-  .tira,.tira.siete{grid-template-columns:repeat(2,1fr);gap:8px}
-  .leyenda{grid-template-columns:repeat(2,1fr);gap:6px}
-  .ley{padding:6px 9px;border-left-width:3px}
-  .ley-n{font-size:.84rem}
-  .ley-h,.ley-l{font-size:.71rem}
-  .cab-marca{gap:11px}
-  .cab-datos{gap:5px}
-  .cab-datos .dato{font-size:.77rem;padding:3px 10px}
+  .envoltura{padding:16px 14px 34px;gap:12px}
+  .tira,.tira.siete{grid-template-columns:repeat(2,1fr);gap:9px}
+  .leyenda{grid-template-columns:1fr}
+  .ley{border-left:0;padding-left:0;padding-right:0;border-top:1px solid var(--linea)}
+  .ley:first-child{border-top:0}
+  .meta{gap:0}
+  .meta-item{padding:4px 0;border-left:0;border-top:1px solid var(--linea);width:100%;
+    flex-direction:row;justify-content:space-between;align-items:baseline}
+  .cab-marca{gap:13px}
   img.logo.chico{width:54px}
   .titular{font-size:1.85rem}
-  .lema{font-size:.98rem}
-  .col-hora{font-size:2rem}
-  .col-grupo{min-height:0}
-}
-@media (prefers-reduced-motion:reduce){
-  *{transition:none!important;animation:none!important}
+  .portada-caja{padding:30px 22px 26px}
+  .col-hora{font-size:2.1rem}
+  .col-grupo{height:auto;margin-bottom:6px}
+  .regla{border-left:0;padding-left:0;padding-right:0}
 }
 
 </style>
@@ -674,7 +668,7 @@ function listadoTexto(){
   var c = S.config, L = [];
   L.push("*" + String(c.titulo || "Oración Implacable").toUpperCase() + "*");
   if (c.lema) L.push("_" + c.lema + "_");
-  L.push("Embajadores de Cristo · Nueva Jerusalén");
+  L.push("Embajadores de Cristo — Nueva Jerusalén");
   L.push("");
 
   if (c.estrategia === "cadena"){
@@ -686,19 +680,19 @@ function listadoTexto(){
     var vacias = [], incompletas = [];
     FRANJAS.forEach(function(f){
       var g = gente("cadena", f.id), r = responsable("cadena", f.id);
-      L.push("*" + rango(f.ini) + "*  ·  " + GRUPOS[f.grupo].n + "  (" + g.length + "/" + f.cupo + ")");
+      L.push("*" + rango(f.ini) + "*  —  " + GRUPOS[f.grupo].n + "  (" + g.length + "/" + f.cupo + ")");
       L.push("Responsable: " + (r ? nombreCorto(r) : "sin asignar"));
       if (!g.length){ L.push("— nadie todavía —"); vacias.push(rango(f.ini)); }
       else g.forEach(function(p){ L.push("• " + p.n); });
       if (g.length && g.length < f.cupo) incompletas.push(rango(f.ini)+" ("+(f.cupo-g.length)+")");
       L.push("");
     });
-    if (vacias.length) L.push("*Horas sin nadie:* " + vacias.join(" · "));
-    if (incompletas.length) L.push("*Horas con lugares libres:* " + incompletas.join(" · "));
+    if (vacias.length) L.push("*Horas sin nadie:* " + vacias.join(", "));
+    if (incompletas.length) L.push("*Horas con lugares libres:* " + incompletas.join(", "));
     if (!vacias.length && !incompletas.length) L.push("*Las nueve horas están completas.*");
 
   } else if (c.estrategia === "semana"){
-    L.push("*SEMANA DE ORACIÓN · " + (c.minutos||5) + " MINUTOS AL DÍA*");
+    L.push("*SEMANA DE ORACIÓN — " + (c.minutos||5) + " MINUTOS AL DÍA*");
     if (c.semanaFechas) L.push(c.semanaFechas);
     L.push(totales().t + " participaciones");
     L.push("");
@@ -714,7 +708,7 @@ function listadoTexto(){
   } else {
     var g2 = gente("matutino","todos");
     L.push("*MATUTINO PRESENCIAL*");
-    L.push(c.matFecha + " · " + c.matHora + " · " + c.matLugar);
+    L.push(c.matFecha + " — " + c.matHora + " — " + c.matLugar);
     L.push("");
     L.push("*Programa*");
     String(c.matPrograma||"").split("\n").forEach(function(l){
@@ -817,7 +811,7 @@ function totales(){
 
 function listaNombres(ambito, slot, clase){
   var g = gente(ambito, slot);
-  if (!g.length) return '<p class="vacio">Libre</p>';
+  if (!g.length) return '<p class="vacio">Sin apuntados</p>';
   return '<ul class="nombres '+(clase||"")+'">' + g.map(function(p){
     var mio = p.d === miId;
     var puede = mio || esDirectiva();
@@ -833,10 +827,10 @@ function leyendaGrupos(){
     var horas = FRANJAS.filter(function(f){ return f.grupo === id; });
     var ini = horas[0].ini, fin = (horas[horas.length-1].ini + 1) % 24;
     var libres = horas.reduce(function(a,f){ return a + Math.max(0, f.cupo - gente("cadena",f.id).length); }, 0);
-    return '<div class="ley '+g.c+(id==="implacables"?" destacada":"")+'">'
+    return '<div class="ley '+g.c+'">'
       + '<span class="ley-n">'+esc(g.n)+'</span>'
-      + '<span class="ley-h">'+pad(ini)+':00 – '+pad(fin)+':00</span>'
-      + '<span class="ley-l">'+libres+(libres===1?' libre':' libres')+'</span>'
+      + '<span class="ley-d">'+pad(ini)+':00 &ndash; '+pad(fin)+':00</span>'
+      + '<span class="ley-l">'+libres+(libres===1?' lugar libre':' lugares libres')+'</span>'
       + '</div>';
   }).join("") + '</div>';
 }
@@ -852,18 +846,17 @@ function vistaCadena(){
     var lleno = libres <= 0;
     var r = responsable("cadena", x.id);
     return '<article class="col '+g.c+(lleno?" lleno":"")+(x.grupo==="implacables"?" elite":"")+'">'
-      + '<div class="col-cinta"></div>'
-      + '<header class="col-cab">'
-      +   '<span class="col-grupo">'+esc(g.n)+'</span>'
-      +   '<span class="col-hora">'+pad(x.ini)+'</span>'
-      +   '<span class="col-rango">'+rango(x.ini)+'</span>'
-      + '</header>'
-      + '<p class="col-libres '+(lleno?"cero":(libres<=2?"escaso":""))+'">'
+      + '<span class="col-grupo">'+esc(g.n)+'</span>'
+      + '<span class="col-hora">'+pad(x.ini)+'</span>'
+      + '<span class="col-rango">'+rango(x.ini)+'</span>'
+      + '<p class="col-libres '+(lleno?"cero":"")+'">'
       +   (lleno ? "Completo" : '<b>'+libres+'</b> '+(libres===1?'libre':'libres')+' de '+x.cupo) + '</p>'
       + listaNombres("cadena", x.id)
-      + '<p class="col-resp">'+(r ? esc(nombreCorto(r)) : "sin responsable")+'</p>'
-      + (lleno || !abierto ? '' : '<button class="tomar" onclick="RELEVO.unir(\'cadena\',\''+x.id+'\')">Tomar</button>')
-      + '</article>';
+      + '<div class="col-pie">'
+      +   '<span class="col-resp-et">Responsable</span>'
+      +   '<span class="col-resp">'+(r ? esc(nombreCorto(r)) : "Sin asignar")+'</span>'
+      +   (lleno || !abierto ? '' : '<button class="tomar" onclick="RELEVO.unir(\'cadena\',\''+x.id+'\')">Tomar</button>')
+      + '</div></article>';
   }).join("") + '</div>';
 
   html += '<div class="reglas">'
@@ -878,21 +871,23 @@ function vistaCadena(){
 function vistaSemana(){
   var min = S.config.minutos || 5;
   var abierto = S.config.abierto;
-  var html = '<p class="sub">'+esc(S.config.semanaFechas)+' · '+min+' minutos diarios, a la hora que puedas</p>';
+  var html = '<p class="sub">'+esc(S.config.semanaFechas)+'<i class="sep"></i>'+min+' minutos diarios</p>';
   html += '<div class="tira siete">' + DIAS_ID.map(function(d){
     var lista = gente("semana", d.id);
     var r = responsable("semana", d.id);
     return '<article class="col g1">'
-      + '<div class="col-cinta"></div>'
-      + '<header class="col-cab"><span class="col-grupo">'+min+' minutos</span>'
+      + '<span class="col-grupo">'+min+' minutos</span>'
       + '<span class="col-hora dia">'+esc(d.nombre)+'</span>'
-      + '<span class="col-rango">donde estés</span></header>'
-      + '<p class="col-libres"><b>'+lista.length+'</b> orando</p>'
+      + '<span class="col-rango">a la hora que puedas</span>'
+      + '<p class="col-libres"><b>'+lista.length+'</b> '+(lista.length===1?'persona':'personas')+'</p>'
       + listaNombres("semana", d.id)
-      + '<p class="col-resp">'+(r ? esc(nombreCorto(r)) : "sin responsable")+'</p>'
-      + (!abierto ? '' : '<button class="tomar" onclick="RELEVO.unir(\'semana\',\''+d.id+'\')">Este día oro yo</button>')
-      + '</article>';
+      + '<div class="col-pie">'
+      +   '<span class="col-resp-et">Responsable</span>'
+      +   '<span class="col-resp">'+(r ? esc(nombreCorto(r)) : "Sin asignar")+'</span>'
+      +   (!abierto ? '' : '<button class="tomar" onclick="RELEVO.unir(\'semana\',\''+d.id+'\')">Este día oro yo</button>')
+      + '</div></article>';
   }).join("") + '</div>';
+
   html += '<div class="reglas">'
     + '<div class="regla"><h4>Sin horario</h4><p>No hay hora fija. Solo '+min+' minutos en el día que elegiste.</p></div>'
     + '<div class="regla"><h4>Puedes repetir</h4><p>Si quieres orar más de un día, apúntate en todos los que quieras.</p></div>'
@@ -906,16 +901,16 @@ function vistaMatutino(){
   var c = S.config;
   var g = gente("matutino","todos");
   var filas = String(c.matPrograma||"").split("\n").map(function(l){return l.trim();}).filter(Boolean);
-  var html = '<p class="sub">'+esc(c.matFecha)+' · '+esc(c.matHora)+' · '+esc(c.matLugar)+'</p>';
+  var html = '<p class="sub">'+esc(c.matFecha)+'<i class="sep"></i>'+esc(c.matHora)+'<i class="sep"></i>'+esc(c.matLugar)+'</p>';
   html += '<div class="matutino">';
-  html += '<section class="bloque"><h3>Programa</h3><ol class="programa">'
+  html += '<section class="bloque"><h3>Programa</h3><hr class="regla-doble"><ol class="programa">'
     + filas.map(function(l){
         var p = l.split("|");
         return '<li><b>'+esc((p[0]||"").trim())+'</b><span>'+esc((p[1]||"").trim())+'</span>'
           + (p[2] ? '<em>'+esc(p[2].trim())+'</em>' : '') + '</li>';
       }).join("")
     + '</ol></section>';
-  html += '<section class="bloque"><h3>Confirmaron que llegan · '+g.length+'</h3>'
+  html += '<section class="bloque"><h3>Confirmaron asistencia &mdash; '+g.length+'</h3><hr class="regla-doble">'
     + listaNombres("matutino","todos","ancha")
     + (!c.abierto ? '' : '<button class="tomar grande" onclick="RELEVO.unir(\'matutino\',\'todos\')">Ahí estaré</button>')
     + '</section>';
@@ -984,10 +979,12 @@ function portada(){
   var h = '<div class="portada">';
   h += '<div class="portada-caja">';
   h += marcaLogo("grande");
-  h += '<span class="rotulo">Embajadores de Cristo · Nueva Jerusalén</span>';
+  h += '<span class="rotulo">Embajadores de Cristo<i class="sep"></i>Nueva Jerusalén</span>';
   h += '<h1 class="titular">'+esc(c.titulo || CONFIG_DEF.titulo)+'</h1>';
   h += '<p class="lema">'+esc(c.lema || CONFIG_DEF.lema)+'</p>';
+  h += '<hr class="regla-doble">';
   h += '<blockquote class="verso"><p>'+VERSO+'</p><cite>Isaías 62:6</cite></blockquote>';
+  h += '<hr class="regla-doble">';
 
   if (!pidiendoCodigo){
     h += '<div class="acceso">'
@@ -1025,7 +1022,7 @@ function pantallaFallo(){
         ? "Esta página todavía no tiene la configuración de la base de datos."
         : "El tablero no logra leer la base de datos. Revisa tu conexión; si el problema sigue, avísale a la directiva.";
   return '<div class="portada"><div class="portada-caja">'+marcaLogo("grande")
-    + '<h1 class="titular">'+t+'</h1><p class="lema">'+p+'</p></div></div>';
+    + '<h1 class="titular">'+t+'</h1><hr class="regla-doble"><p class="pista">'+p+'</p></div></div>';
 }
 
 /* ============ pintado principal ============ */
@@ -1044,20 +1041,29 @@ function pintar(){
   var h = '<div class="envoltura">';
 
   /* --- cabecera --- */
+  var meta = '<div class="meta">'
+    + '<div class="meta-item"><span class="meta-et">Campaña</span><span class="meta-va">'+esc(c.mes)+'</span></div>';
+  if (c.estrategia === "cadena")
+    meta += '<div class="meta-item"><span class="meta-et">Fecha</span><span class="meta-va">'+esc(c.cadenaFecha)+'</span></div>';
+  meta += '<div class="meta-item"><span class="meta-et">Apuntados</span><span class="meta-va oro">'
+        + t.t + (t.c ? ' de ' + t.c : '') + '</span></div>'
+        + '<div class="meta-item"><span class="meta-et">Inscripciones</span><span class="meta-va '
+        + (c.abierto ? '' : 'mal') + '">' + (c.abierto ? 'Abiertas' : 'Cerradas') + '</span></div>'
+        + '<div class="meta-item"><span class="meta-et">Tablero</span><span class="meta-va '
+        + (conectado ? 'bien' : 'mal') + '">' + (conectado ? 'En vivo' : 'Reconectando') + '</span></div>'
+        + '</div>';
+
   h += '<header class="cabecera">'
-    + '<div class="cab-marca">'+marcaLogo("chico")+'<div class="cab-txt">'
-    +   '<span class="rotulo">Embajadores de Cristo · Nueva Jerusalén</span>'
-    +   '<h1 class="titular">'+esc(c.titulo || CONFIG_DEF.titulo)+'</h1>'
-    +   '<p class="lema">'+esc(c.lema || CONFIG_DEF.lema)+'</p>'
-    + '</div></div>'
-    + '<div class="cab-datos">'
-    +   '<span class="dato">'+esc(c.mes)+'</span>'
-    +   (c.estrategia === "cadena" ? '<span class="dato">'+esc(c.cadenaFecha)+'</span>' : '')
-    +   (c.abierto
-          ? '<span class="dato fuerte"><b>'+t.t+'</b>'+(t.c?' / '+t.c:'')+' apuntados</span>'
-          : '<span class="dato cerrado">Inscripciones cerradas</span>')
-    +   '<span class="dato '+(conectado?"vivo":"")+'"><i class="punto"></i>'+(conectado?"En vivo":"Reconectando…")+'</span>'
-    + '</div></header>';
+    + '<div class="cab-alto">'
+    +   '<div class="cab-marca">'+marcaLogo("chico")+'<div class="cab-txt">'
+    +     '<span class="rotulo">Embajadores de Cristo<i class="sep"></i>Nueva Jerusalén</span>'
+    +     '<h1 class="titular">'+esc(c.titulo || CONFIG_DEF.titulo)+'</h1>'
+    +     '<p class="lema">'+esc(c.lema || CONFIG_DEF.lema)+'</p>'
+    +   '</div></div>'
+    + '</div>'
+    + '<hr class="regla-doble">'
+    + meta
+    + '</header>';
 
   /* --- barra de identidad --- */
   h += '<div class="barra">'
@@ -1077,7 +1083,8 @@ function pintar(){
      : c.estrategia === "semana" ? vistaSemana()
      : vistaMatutino();
 
-  h += '<blockquote class="verso banda"><p>'+VERSO+'</p><cite>Isaías 62:6</cite></blockquote>';
+  h += '<blockquote class="verso banda"><hr class="regla-doble"><p>'+VERSO+'</p>'
+     + '<cite>Isaías 62:6</cite><hr class="regla-doble"></blockquote>';
   h += '</div>';
 
   raiz.innerHTML = h;
