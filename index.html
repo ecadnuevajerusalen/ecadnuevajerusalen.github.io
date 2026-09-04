@@ -637,6 +637,21 @@ API.sortear = function(){
   db.ref("tablero/resp/"+ambito).set(obj);
 };
 
+API.guardarResponsables = function(){
+  if (!db) return;
+  var ambito = S.config.estrategia === "semana" ? "semana" : "cadena";
+  var lista = ambito === "semana" ? DIAS_ID : FRANJAS;
+  var obj = {};
+  for (var i=0;i<lista.length;i++){
+    var el = document.getElementById("resp_"+lista[i].id);
+    var v = el ? el.value.replace(/\s+/g," ").trim() : "";
+    obj[lista[i].id] = v || null;
+  }
+  db.ref("tablero/resp/"+ambito).set(obj).then(function(){
+    avisar("Responsables guardados. Los apuntados no se tocaron.");
+  });
+};
+
 API.abrirCerrar = function(){ if (db) db.ref("tablero/config/abierto").set(!S.config.abierto); };
 
 API.vaciar = function(){
@@ -927,6 +942,27 @@ function area(id,etq,val,pista){
     + '<textarea id="'+id+'">'+esc(val)+'</textarea>'
     + '<span class="pista">'+esc(pista)+'</span></div>';
 }
+function panelResponsables(){
+  var e = S.config.estrategia;
+  if (e === "matutino") return "";
+  var ambito = e === "semana" ? "semana" : "cadena";
+  var lista = ambito === "semana" ? DIAS_ID : FRANJAS;
+  return '<div class="divisor"></div>'
+    + '<div class="campo"><label>Responsable de cada '+(ambito==="semana"?"día":"franja")+'</label>'
+    + '<div class="campos">'
+    + lista.map(function(x){
+        var r = responsable(ambito, x.id) || "";
+        var etq = ambito === "semana" ? x.nombre : rango(x.ini);
+        return '<div class="campo"><label for="resp_'+x.id+'">'+esc(etq)+'</label>'
+          + '<input type="text" id="resp_'+x.id+'" value="'+esc(r)+'" placeholder="Sin asignar"></div>';
+      }).join("")
+    + '</div>'
+    + '<span class="pista">No tiene que ser de la directiva: escribe el nombre de quien sea. '
+    + 'Para anotar el cargo, usa Nombre | Cargo. Guardar aquí no toca los nombres apuntados.</span>'
+    + '<div class="fila-acc"><button class="primario" onclick="RELEVO.guardarResponsables()">Guardar responsables</button></div>'
+    + '</div>';
+}
+
 function panelAdmin(){
   if (!adminAbierto || !esDirectiva()) return "";
   var c = S.config, e = c.estrategia;
@@ -942,7 +978,9 @@ function panelAdmin(){
     + '<button onclick="RELEVO.abrirCerrar()">'+(c.abierto?"Cerrar inscripciones":"Abrir inscripciones")+'</button>'
     + '<button class="peligro" onclick="RELEVO.vaciar()">'+(confirmandoVaciar?"¿Seguro? Toca otra vez":"Vaciar tablero (mes nuevo)")+'</button>'
     + '</div>'
-    + '<span class="pista">Con 8 directivos y 9 horas, una hora queda sin responsable a propósito.</span>'
+    + '<span class="pista">El sorteo reparte a los directivos al azar y sobrescribe lo que haya. '
+    + 'Para asignar a alguien a una hora concreta, usa la lista de abajo.</span>'
+    + panelResponsables()
     + '<div class="divisor"></div>'
     + '<div class="campo"><label>Listado para la directiva</label>'
     + '<div class="fila-acc">'
